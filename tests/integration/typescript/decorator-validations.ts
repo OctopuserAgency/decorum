@@ -1,14 +1,14 @@
-import {Required} from '../../../src/main';
-import {Email} from '../../../src/main';
-import {MinLength} from '../../../src/main';
-import {MaxLength} from '../../../src/main';
-import {FieldName} from '../../../src/main';
-import {Validation} from '../../../src/main';
-import {Pattern} from '../../../src/main';
-import {Alpha} from '../../../src/main';
-import {AlphaNumeric} from '../../../src/main';
-import {Validator} from '../../../src/main';
-import {ModelValidator} from '../../../src/main';
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
+chai.use(sinonChai);
+const { expect } = chai;
+
+import {
+  Required, Email, MinLength, MaxLength,
+  FieldName, Validation, Pattern, Alpha,
+  AlphaNumeric, Validator, ModelValidator
+} from '../../../src';
 import {IMessageOpts} from '../../../src/messages';
 
 'use strict';
@@ -78,7 +78,7 @@ describe('TypeScript Decorator-based validations', () => {
                 let errors = validator.validateField('username');
 
                 // Assert
-                expect(errors.length).toBe(0);
+                expect(errors.length).to.equal(0);
             });
         });
 
@@ -91,8 +91,8 @@ describe('TypeScript Decorator-based validations', () => {
                 let errors = validator.validateField('username');
 
                 // Assert
-                expect(errors.length).toBe(1);
-                expect(errors[0]).toBe('Field is required');
+                expect(errors.length).to.equal(1);
+                expect(errors[0]).to.equal('Field is required');
             });
         });
 
@@ -105,8 +105,8 @@ describe('TypeScript Decorator-based validations', () => {
                 let errors = validator.validateField('email');
 
                 // Assert
-                expect(errors.length).toBe(1);
-                expect(errors[0]).toBe('Email address is required');
+                expect(errors.length).to.equal(1);
+                expect(errors[0]).to.equal('Email address is required');
             });
         });
 
@@ -119,8 +119,8 @@ describe('TypeScript Decorator-based validations', () => {
                 let errors = validator.validateField('myProperty');
 
                 // Assert
-                expect(errors.length).toBe(1);
-                expect(errors[0]).toBe('Field can not exceed 3 characters in length');
+                expect(errors.length).to.equal(1);
+                expect(errors[0]).to.equal('Field can not exceed 3 characters in length');
             });
         });
     });
@@ -138,17 +138,17 @@ describe('TypeScript Decorator-based validations', () => {
                 let results = validator.validate();
 
                 // Assert
-                expect(results).toBeDefined();
-                expect(results.isValid).toBe(false);
+                expect(results).to.exist;
+                expect(results.isValid).to.equal(false);
 
                 let errors = results.errors;
-                expect(errors.length).toBe(3);
-                expect(errors[0].field).toBe('email');
-                expect(errors[0].errors[0]).toBe('Email address is not a valid email address');
-                expect(errors[1].field).toBe('password');
-                expect(errors[1].errors[0]).toBe('Password must be at least 10 characters long');
-                expect(errors[2].field).toBe('confirmPassword');
-                expect(errors[2].errors[0]).toBe('Passwords must match');
+                expect(errors.length).to.equal(3);
+                expect(errors[0].field).to.equal('email');
+                expect(errors[0].errors[0]).to.equal('Email address is not a valid email address');
+                expect(errors[1].field).to.equal('password');
+                expect(errors[1].errors[0]).to.equal('Password must be at least 10 characters long');
+                expect(errors[2].field).to.equal('confirmPassword');
+                expect(errors[2].errors[0]).to.equal('Passwords must match');
             });
         });
     });
@@ -164,8 +164,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('email');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Email address is not a valid email address');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Email address is not a valid email address');
                 });
             });
 
@@ -178,7 +178,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('email');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -194,8 +194,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('confirmPassword');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Passwords must match');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Passwords must match');
                 });
             });
 
@@ -209,7 +209,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('confirmPassword');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -224,8 +224,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('password');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Password must be at least 10 characters long');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Password must be at least 10 characters long');
                 });
             });
 
@@ -238,7 +238,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('password');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -256,8 +256,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('password');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Password can not exceed 30 characters in length');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Password can not exceed 30 characters in length');
                 });
             });
 
@@ -270,7 +270,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('password');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -285,8 +285,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('email');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Email address is not a valid email address');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Email address is not a valid email address');
                 });
             });
 
@@ -299,7 +299,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('email');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -314,8 +314,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('slug');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Must be a valid slug tag');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Must be a valid slug tag');
                 });
             });
 
@@ -328,7 +328,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('slug');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -343,8 +343,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('alphaField');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Field must only contain alphabetic characters');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Field must only contain alphabetic characters');
                 });
             });
 
@@ -357,7 +357,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('alphaField');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });
@@ -372,8 +372,8 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('alphaNumericField');
 
                     // Assert
-                    expect(errors.length).toBe(1);
-                    expect(errors[0]).toBe('Alpha numeric field is not alphanumeric!');
+                    expect(errors.length).to.equal(1);
+                    expect(errors[0]).to.equal('Alpha numeric field is not alphanumeric!');
                 });
             });
 
@@ -386,7 +386,7 @@ describe('TypeScript Decorator-based validations', () => {
                     let errors = validator.validateField('alphaNumericField');
 
                     // Assert
-                    expect(errors.length).toBe(0);
+                    expect(errors.length).to.equal(0);
                 });
             });
         });

@@ -28,3 +28,6 @@ node_modules
 
 # Doc dependencies
 /docs/lib
+
+# test compilations
+tests-compile

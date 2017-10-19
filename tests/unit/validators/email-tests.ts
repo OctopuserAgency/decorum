@@ -1,4 +1,9 @@
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
 import EmailValidator from '../../../src/validators/email';
+chai.use(sinonChai);
+const { expect } = chai;
 
 describe('Email validator', () => {
     let validator: EmailValidator = null;
@@ -12,7 +17,7 @@ describe('Email validator', () => {
                 let valid = validator.isValid('foo@b.');
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -22,7 +27,7 @@ describe('Email validator', () => {
                 let valid = validator.isValid('bob@gmail.com');
 
                 // Assert
-                expect(valid).toBe(true);
+                expect(valid).to.be.true;
             });
         });
     });

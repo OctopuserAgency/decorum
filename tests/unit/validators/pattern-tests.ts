@@ -1,4 +1,9 @@
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
 import PatternValidator from '../../../src/validators/pattern';
+chai.use(sinonChai);
+const { expect } = chai;
 
 describe('Pattern validator', () => {
     let validator: PatternValidator = null;
@@ -12,7 +17,7 @@ describe('Pattern validator', () => {
                 let valid = validator.isValid('123A4');
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -22,7 +27,7 @@ describe('Pattern validator', () => {
                 let valid = validator.isValid('42');
 
                 // Assert
-                expect(valid).toBe(true);
+                expect(valid).to.be.true;
             });
         });
     });

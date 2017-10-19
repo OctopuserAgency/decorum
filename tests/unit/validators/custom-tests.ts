@@ -1,4 +1,9 @@
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
 import CustomValidator from '../../../src/validators/custom';
+chai.use(sinonChai);
+const { expect } = chai;
 
 describe('Custom validator', () => {
     class MyModel {
@@ -23,7 +28,7 @@ describe('Custom validator', () => {
                 let valid = validator.isValid('999-99-9999', model);
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -36,7 +41,7 @@ describe('Custom validator', () => {
                 let valid = validator.isValid('foo', model);
 
                 // Assert
-                expect(valid).toBe(true);
+                expect(valid).to.be.true;
             });
         });
     });

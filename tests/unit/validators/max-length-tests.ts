@@ -1,4 +1,9 @@
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
 import MaxLengthValidator from '../../../src/validators/max-length';
+chai.use(sinonChai);
+const { expect } = chai;
 
 describe('Length validator', () => {
     let validator: MaxLengthValidator = null;
@@ -12,7 +17,7 @@ describe('Length validator', () => {
                 let valid = validator.isValid('12345');
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -22,7 +27,7 @@ describe('Length validator', () => {
                 let valid = validator.isValid('1234');
 
                 // Assert
-                expect(valid).toBe(true);
+                expect(valid).to.be.true;
             });
         });
 
@@ -32,7 +37,7 @@ describe('Length validator', () => {
                 let valid = validator.isValid('123');
 
                 // Assert
-                expect(valid).toBe(true);
+                expect(valid).to.be.true;
             });
         });
     });

@@ -1,4 +1,10 @@
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
 import RequiredFieldValidator from '../../../src/validators/required';
+
+chai.use(sinonChai);
+const { expect } = chai;
 
 describe('Required validator', () => {
     let validator: RequiredFieldValidator = null;
@@ -12,7 +18,7 @@ describe('Required validator', () => {
                 let valid = validator.isValid('');
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -22,7 +28,7 @@ describe('Required validator', () => {
                 let valid = validator.isValid('     ');
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -32,7 +38,7 @@ describe('Required validator', () => {
                 let valid = validator.isValid(null);
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -42,7 +48,7 @@ describe('Required validator', () => {
                 let valid = validator.isValid(null);
 
                 // Assert
-                expect(valid).toBe(false);
+                expect(valid).to.be.false;
             });
         });
 
@@ -52,7 +58,7 @@ describe('Required validator', () => {
                 let valid = validator.isValid('some value');
 
                 // Assert
-                expect(valid).toBe(true);
+                expect(valid).to.be.true;
             });
         });
     });
